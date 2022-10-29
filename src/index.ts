@@ -12,13 +12,15 @@ const inject = async (channel: "canary" | "ptb" | "stable" = "stable", directory
 
     const asarPath = path.join(proposedPath, "app.asar");
 
-    if (!fs.existsSync(asarPath)) {
+    if (!fs.existsSync(asarPath) && !fs.existsSync(path.join(proposedPath, "original_app.asar"))) {
         events?.onError?.("Could not find app.asar.");
         throw new Error("No Discord asar found.");
     }
 
-    fs.renameSync(asarPath, asarPath.replace(/app\.asar$/, "original_app.asar"));
-    events?.onRenamed?.(asarPath);
+    if (!fs.existsSync(path.join(proposedPath, "original_app.asar"))) {
+        fs.renameSync(asarPath, asarPath.replace(/app\.asar$/, "original_app.asar"));
+        events?.onRenamed?.(asarPath);
+    }
 
     const newIndexContent = `require("${directory}");`;
     const newPackageContent = `{"name":"${name || "discord"}","main":"index.js"}`;
