@@ -1,6 +1,6 @@
 {
     "name": "@velocity-discord/scaffold",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A package to simplify injecting into Discord.",
     "main": "dist/index.js",
     "exports": {

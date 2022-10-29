@@ -4,7 +4,7 @@ import Module from "module";
 import path from "path";
 import fs from "fs";
 
-export const inject = async (channel: "canary" | "ptb" | "stable" = "stable", directory: string, options: any = {}) => {
+const inject = async (channel: "canary" | "ptb" | "stable" = "stable", directory: string, options: any = {}) => {
     const { name, events } = options;
 
     const proposedPath = getAppPath(channel);
@@ -30,9 +30,9 @@ export const inject = async (channel: "canary" | "ptb" | "stable" = "stable", di
     return proposedPath;
 };
 
-export const asarName = "original_app.asar";
+const asarName = "original_app.asar";
 
-export const load = (app) => {
+const load = (app) => {
     const { setAppPath } = app;
 
     const newAsarPath = path.join(app.getAppPath(), "..", "original_app.asar");
@@ -48,3 +48,5 @@ export const load = (app) => {
     // @ts-ignore
     Module._load(path.join(base, pkj.main), null, true);
 };
+
+export { inject, load, asarName };
