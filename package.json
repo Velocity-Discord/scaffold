@@ -1,0 +1,27 @@
+{
+    "name": "@velocity-discord/scaffold",
+    "version": "1.0.0",
+    "description": "A package to simplify injecting into Discord.",
+    "main": "dist/index.js",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "type": "module",
+    "scripts": {
+        "build": "rollup -c",
+        "dev": "rollup -c -w"
+    },
+    "author": "TheCommieAxolotl",
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-typescript": "^9.0.2",
+        "rollup": "^3.2.3",
+        "rollup-plugin-terser": "^7.0.2",
+        "tslib": "^2.4.0",
+        "typescript": "^4.8.4"
+    }
+}

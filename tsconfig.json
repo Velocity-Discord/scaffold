@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "paths": {
+            "@util": ["./src/util"],
+            "@util/*": ["./src/util/*"]
+        }
+    }
+}
