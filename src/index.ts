@@ -33,8 +33,6 @@ const inject = async (channel: "canary" | "ptb" | "stable" = "stable", directory
 const asarName = "original_app.asar";
 
 const load = (app) => {
-    const { setAppPath } = app;
-
     const newAsarPath = path.join(app.getAppPath(), "..", "original_app.asar");
     const oldAsarPath = path.join(app.getAppPath(), "..", "app.asar");
 
@@ -42,7 +40,7 @@ const load = (app) => {
 
     const pkj = JSON.parse(fs.readFileSync(path.join(base, "package.json"), "utf8"));
 
-    setAppPath(base);
+    app.setAppPath(base);
     app.name = pkj.name;
 
     // @ts-ignore
