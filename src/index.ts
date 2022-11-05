@@ -25,6 +25,10 @@ const inject = async (channel: "canary" | "ptb" | "stable" = "stable", directory
     const newIndexContent = `require("${directory}");`;
     const newPackageContent = `{"name":"${name || "discord"}","main":"index.js"}`;
 
+    if (!fs.existsSync(path.join(proposedPath, "app"))) {
+        fs.mkdirSync(path.join(proposedPath, "app"));
+    }
+
     fs.writeFileSync(path.join(proposedPath, "app", "index.js"), newIndexContent);
     fs.writeFileSync(path.join(proposedPath, "app", "package.json"), newPackageContent);
     events?.onInjected?.(proposedPath);
