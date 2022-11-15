@@ -22,7 +22,7 @@ const inject = async (channel: "canary" | "ptb" | "stable" = "stable", directory
         events?.onRenamed?.(asarPath);
     }
 
-    const newIndexContent = `require("${directory}");`;
+    const newIndexContent = `require("${directory.replace(/\\/g, "\\\\")}");`;
     const newPackageContent = `{"name":"${name || "discord"}","main":"index.js"}`;
 
     if (!fs.existsSync(path.join(proposedPath, "app"))) {
