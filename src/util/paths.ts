@@ -73,6 +73,8 @@ export const getAppPath = (channel: "canary" | "ptb" | "stable" = "stable") => {
                 break;
         }
 
+        proposedPath += "/resources";
+
         if (!proposedPath) {
             throw new Error("Could not find Discord installation.");
         }
